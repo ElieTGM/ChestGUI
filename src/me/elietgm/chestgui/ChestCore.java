@@ -7,6 +7,8 @@ import me.elietgm.chestgui.api.SkullCreator;
 
 public class ChestCore extends JavaPlugin {
 
+	//4e879827186621dab1f4e52e9d3936e3bd7eb824//
+	
 	private static ChestCore instance;
 	public static ChestCore getInstance() { return instance; }
 	
