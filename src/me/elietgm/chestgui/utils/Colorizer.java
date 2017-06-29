@@ -15,4 +15,12 @@ public class Colorizer {
 		return l.stream().map(Colorizer::color).collect(Collectors.toList());
 	}
 
+	public static String uncolor(String message) {
+		return ChatColor.stripColor(message);
+	}
+
+	public static List<String> uncolorList(List<String> l) {
+		return l.stream().map(Colorizer::uncolor).collect(Collectors.toList());
+	}
+
 }
