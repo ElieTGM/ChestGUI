@@ -28,42 +28,43 @@ public class ItemCreatorBeta {
 		type = mat;
 	}
 
-	public ItemCreatorBeta type(Material newType) {
+	public ItemCreatorBeta withType(Material newType) {
 		type = newType;
 		return this;
 	}
 
-	public ItemCreatorBeta name(String newName) { // Can be named setCustomName!
+	public ItemCreatorBeta withName(String newName) { // Can be named
+														// setCustomName!
 		name = newName;
 		return this;
 	}
 
-	public ItemCreatorBeta amount(int newAmount) {
+	public ItemCreatorBeta withAmount(int newAmount) {
 		amount = newAmount;
 		return this;
 	}
 
-	public ItemCreatorBeta data(int newData) {
+	public ItemCreatorBeta withData(int newData) {
 		data = newData;
 		return this;
 	}
 
-	public ItemCreatorBeta lore(List<String> newLore) {
+	public ItemCreatorBeta withLore(List<String> newLore) {
 		lore = newLore;
 		return this;
 	}
 
-	public ItemCreatorBeta effects(List<PotionEffect> newEffects) {
+	public ItemCreatorBeta withEffects(List<PotionEffect> newEffects) {
 		effects = newEffects;
 		return this;
 	}
 
-	public ItemCreatorBeta owner(String newOwner) {
+	public ItemCreatorBeta withOwner(String newOwner) {
 		owner = newOwner;
 		return this;
 	}
 
-	public ItemCreatorBeta color(Color newColor) {
+	public ItemCreatorBeta withColor(Color newColor) {
 		color = newColor;
 		return this;
 	}
