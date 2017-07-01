@@ -7,9 +7,9 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import me.elietgm.chestgui.ChestCore;
 import me.elietgm.chestgui.api.ChestGUI;
 import me.elietgm.chestgui.api.GUICallback;
+import me.elietgm.chestgui.api.ItemCreator;
 import me.elietgm.chestgui.utils.Colorizer;
 
 public class GamemodeChanger {
@@ -32,7 +32,7 @@ public class GamemodeChanger {
 		new ChestGUI(player, 27, "GameMode Manager", false, new GUICallback() {
 
 			@Override
-			public void callback(ChestGUI gui, CallbackType callback, ItemStack item) {
+			public void firstCall(ChestGUI gui, CallbackType callback, ItemStack item) {
 				
 				/**
 				 * Now let's check if the callback is INIT (stall); if it is, let's set the
@@ -54,7 +54,7 @@ public class GamemodeChanger {
 						 * We're gonna create an emerald block, named survival mode. It'll be emerald
 						 * since the player's gamemode is Creative, and not Survival.
 						 */
-						gui.i.setItem(11, ChestCore.getItemCreator().createItem(Material.EMERALD_BLOCK,
+						gui.inventory.setItem(11, new ItemCreator().createItem(Material.EMERALD_BLOCK,
 								1, 0, "&aSurvival Mode",
 								Arrays.asList("&7Switch to survival mode by clicking here!")));
 						
@@ -63,7 +63,7 @@ public class GamemodeChanger {
 						 * player's gamemode is ALREADY creative, he won't change from Creative to
 						 * Creative.
 						 */
-						gui.i.setItem(13, ChestCore.getItemCreator().createItem(Material.REDSTONE_BLOCK,
+						gui.inventory.setItem(13, new ItemCreator().createItem(Material.REDSTONE_BLOCK,
 								1, 0, "&cCreative Mode",
 								Arrays.asList("&7You cannot switch to Creative Mode...")));
 						
@@ -71,7 +71,7 @@ public class GamemodeChanger {
 						 * We're gonna create an emerald block, named adventure mode. It'll be emerald
 						 * since the player's gamemode is Creative, and not Adventure.
 						 */
-						gui.i.setItem(15, ChestCore.getItemCreator().createItem(Material.EMERALD_BLOCK,
+						gui.inventory.setItem(15, new ItemCreator().createItem(Material.EMERALD_BLOCK,
 								1, 0, "&aAdventure Mode",
 								Arrays.asList("&7Switch to adventure mode by clicking here!")));
 					
@@ -84,7 +84,7 @@ public class GamemodeChanger {
 						 * since the player's gamemode is Survival, and he won't change from Survival
 						 * to Survival.
 						 */
-						gui.i.setItem(11, ChestCore.getItemCreator().createItem(Material.REDSTONE_BLOCK,
+						gui.inventory.setItem(11, new ItemCreator().createItem(Material.REDSTONE_BLOCK,
 								1, 0, "&cSurvival Mode",
 								Arrays.asList("&7You cannot switch to Survival Mode...")));
 						
@@ -92,7 +92,7 @@ public class GamemodeChanger {
 						 * We're gonna create an emerald block, named Creative mode. It'll be emerald
 						 * since the player's gamemode is Survival, and not Creative.
 						 */
-						gui.i.setItem(13, ChestCore.getItemCreator().createItem(Material.EMERALD_BLOCK,
+						gui.inventory.setItem(13, new ItemCreator().createItem(Material.EMERALD_BLOCK,
 								1, 0, "&aCreative Mode",
 								Arrays.asList("&7Switch to Creative Mode by clicking here!")));
 						
@@ -100,7 +100,7 @@ public class GamemodeChanger {
 						 * We're gonna create an emerald block, named adventure mode. It'll be emerald
 						 * since the player's gamemode is Survival, and not Adventure.
 						 */
-						gui.i.setItem(15, ChestCore.getItemCreator().createItem(Material.EMERALD_BLOCK,
+						gui.inventory.setItem(15, new ItemCreator().createItem(Material.EMERALD_BLOCK,
 								1, 0, "&aAdventure Mode",
 								Arrays.asList("&7Switch to adventure mode by clicking here!")));
 					
@@ -112,7 +112,7 @@ public class GamemodeChanger {
 						 * We're gonna create an emerald block, named survival mode. It'll be emerald
 						 * since the player's gamemode is Adventure, and not Survival.
 						 */
-						gui.i.setItem(11, ChestCore.getItemCreator().createItem(Material.EMERALD_BLOCK,
+						gui.inventory.setItem(11, new ItemCreator().createItem(Material.EMERALD_BLOCK,
 								1, 0, "&aSurvival Mode",
 								Arrays.asList("&7Switch to survival mode by clicking here!")));
 						
@@ -120,7 +120,7 @@ public class GamemodeChanger {
 						 * We're gonna create an emerald block, named Creative mode. It'll be emerald
 						 * since the player's gamemode is Adventure, and not Creative.
 						 */
-						gui.i.setItem(13, ChestCore.getItemCreator().createItem(Material.EMERALD_BLOCK,
+						gui.inventory.setItem(13, new ItemCreator().createItem(Material.EMERALD_BLOCK,
 								1, 0, "&aCreative Mode",
 								Arrays.asList("&7Switch to Creative Mode by clicking here!")));
 						
@@ -129,7 +129,7 @@ public class GamemodeChanger {
 						 * since the player's gamemode is Adventure, and he won't change from Adventure
 						 * to Adventure.
 						 */
-						gui.i.setItem(15, ChestCore.getItemCreator().createItem(Material.REDSTONE_BLOCK,
+						gui.inventory.setItem(15, new ItemCreator().createItem(Material.REDSTONE_BLOCK,
 								1, 0, "&cAdventure Mode",
 								Arrays.asList("&7You cannot switch to Adventure Mode...")));
 					
@@ -203,8 +203,8 @@ public class GamemodeChanger {
 			}
 
 			@Override
-			public void onSecond(ChestGUI gui) {
-
+			public void secondCall(ChestGUI gui) {
+				
 			}
 			
 		});

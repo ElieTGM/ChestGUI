@@ -14,64 +14,64 @@ import me.elietgm.chestgui.ChestCore;
 
 public class ChestGUI implements Listener {
 
-	public Player p;
-	public Inventory i;
-	public GUICallback c;
+	public String playerName;
+	public Inventory inventory; // Try to use descriptive names!
+	public GUICallback guiCallback;
 	public boolean aC;
-	public boolean iO;
-	
+	private boolean iO; // Lets make this field private cause its not
+						// configurable!
+
 	public ChestGUI iN;
-	
+
 	public ChestGUI(Player player, int size, String title, boolean allowClick, GUICallback callback) {
-		this.p = player;
-		this.i = Bukkit.createInventory(null, size, title);
-		this.c = callback;
+		playerName = player.getName(); // Not need to store the Player object!
+		this.inventory = Bukkit.createInventory(null, size, title);
+		this.guiCallback = callback;
 		this.aC = allowClick;
 		this.iO = true;
 		this.iN = this;
-		
-		c.callback(this, GUICallback.CallbackType.INIT, null);
-		
-		p.openInventory(i);
-		
+
+		guiCallback.firstCall(this, GUICallback.CallbackType.INIT, null);
+
+		player.openInventory(inventory);
+
 		ChestCore.getInstance().getServer().getPluginManager().registerEvents(this, ChestCore.getInstance());
-		
+
 		new BukkitRunnable() {
 			public void run() {
-				new BukkitRunnable() {
-					public void run() {
-						if(iO) {
-							c.onSecond(iN);
-						} else {
-							this.cancel();
-						}
-					}
-				}.runTaskTimer(ChestCore.getInstance(), 0, 20L);
+				if (iO) {
+					guiCallback.secondCall(iN);
+				} else {
+					this.cancel();
+				}
 			}
-		}.runTaskLater(ChestCore.getInstance(), 10L);
+		}.runTaskTimer(ChestCore.getInstance(), 10L, 20L);
 	}
-	
+
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
-		if(event.getWhoClicked().getName() == p.getName()) {
+		if (event.getWhoClicked().getName().equals(playerName)) { // Always
+																	// compare
+																	// String
+																	// with
+																	// equals
 			try {
-				if(!aC) {
+				if (!aC)
 					event.setCancelled(true);
-				}
-				
-				c.callback(this, GUICallback.CallbackType.CLICK, event.getCurrentItem());
+
+				guiCallback.firstCall(this, GUICallback.CallbackType.CLICK, event.getCurrentItem());
 			} catch (Exception e) {
-				//Nope
+				// Nope
 			}
 		}
 	}
-	
+
 	@EventHandler
 	public void onInventoryClose(InventoryCloseEvent event) {
-		if(event.getPlayer().getName() == p.getName()) {
+		if (event.getPlayer().getName().equals(playerName)) {
 			HandlerList.unregisterAll(this);
-			
-			c.callback(this, GUICallback.CallbackType.CLOSE, null);
+
+			guiCallback.firstCall(this, GUICallback.CallbackType.CLOSE, null);
 		}
 	}
 }

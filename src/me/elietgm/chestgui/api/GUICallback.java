@@ -10,7 +10,7 @@ public abstract class GUICallback {
 		CLOSE,
 	}
 	
-	public abstract void callback(ChestGUI gui, CallbackType callback, ItemStack item);
+	public abstract void firstCall(ChestGUI gui, CallbackType callback, ItemStack item);
 	
-	public abstract void onSecond(ChestGUI gui);
+	public abstract void secondCall(ChestGUI gui); //More descriptive names?
 }
